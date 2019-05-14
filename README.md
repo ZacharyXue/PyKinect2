@@ -20,9 +20,7 @@ Full List of Dependencies
 * [comtypes](https://github.com/enthought/comtypes/) 
 * [Kinect for Windows SDK v2](http://aka.ms/k4wv2sdk)
 * [Kinect v2 sensor and adapter](http://aka.ms/k4wv2purchase) Note:  you can use a Kinect for Xbox One as long as you also have the Kinect Adapter for Windows
-* [PyGame](http://www.pygame.org) - for running PyKinectBodyGame sample 
-  ![PyGame](https://monosnap.com/file/4RzEdOzVhik4jj15jAg8uDQgYgwZ6B.png)
-
+* [PyGame](https://github.com/pygame/pygame) - for running PyKinectBodyGame sample 
 
 ## Installation
 
