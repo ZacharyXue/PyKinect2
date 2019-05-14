@@ -11,18 +11,17 @@ class kinect_rgb(object):
         
         # Kinect runtime object, we want only color and body frames 
         # use this to create the connection with Kinect
-        self._kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color | PyKinectV2.FrameSourceTypes_Body)
+        self._kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color)
 
     def run(self):
         # -------- Main Program Loop -----------
-        while cv2.waitKey(10) != 'q':
+        while cv2.waitKey(10) != 27:
 
             # --- Getting frames and drawing   
             if self._kinect.has_new_color_frame():
                 frame = self._kinect.get_last_color_frame()
                 # print("The shape of frame is {}".format(frame.shape))
                 frame = np.reshape(frame,[1080,1920,4])
-                # frame2 = np.array(frame,dtype=np.uint8)
                 img = cv2.cvtColor(frame, cv2.COLOR_RGBA2RGB)
                 cv2.imshow('rgb',img)
                 frame = None
@@ -32,7 +31,5 @@ class kinect_rgb(object):
         self._kinect.close()
 
 
-__main__ = "show_img"
-game = kinect_rgb();
-game.run();
-
+test = kinect_rgb()
+test.run()
