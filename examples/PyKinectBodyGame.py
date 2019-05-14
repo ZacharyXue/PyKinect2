@@ -43,6 +43,7 @@ class BodyGameRuntime(object):
         self._clock = pygame.time.Clock()
 
         # Kinect runtime object, we want only color and body frames 
+        # use this to create the connection with Kinect
         self._kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color | PyKinectV2.FrameSourceTypes_Body)
 
         # back buffer surface for getting Kinect color frames, 32bit color, width and height equal to the Kinect color frame size
@@ -51,7 +52,7 @@ class BodyGameRuntime(object):
         # here we will store skeleton data 
         self._bodies = None
 
-
+    # The function draw_body_bone and draw_body should just copy to other codes
     def draw_body_bone(self, joints, jointPoints, color, joint0, joint1):
         joint0State = joints[joint0].TrackingState;
         joint1State = joints[joint1].TrackingState;

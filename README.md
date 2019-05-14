@@ -47,3 +47,5 @@ easy_install -a c:\projects\downloads\PyKinect2
 After installation is complete, you can launch the interactive python shell and `import pykinect2` to ensure everything has been installed properly.
 
 Core helper classes for working with the Kinect sensor are located in PyKinectRuntime.py. For usage examples, please see /examples/PyKinectBodyGame.py.
+
+>[pygame 3d array to opencv Mat](http://www.it1352.com/901785.html)
