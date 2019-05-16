@@ -14,8 +14,8 @@ class kinect_rgbd(object):
         self._kinect = PyKinectRuntime.PyKinectRuntime(PyKinectV2.FrameSourceTypes_Color | PyKinectV2.FrameSourceTypes_Body)
        # The function draw_body_bone and draw_body should just copy to other codes
     def draw_body_bone(self, joints, jointPoints, joint0, joint1):
-        joint0State = joints[joint0].TrackingState;
-        joint1State = joints[joint1].TrackingState;
+        joint0State = joints[joint0].TrackingState
+        joint1State = joints[joint1].TrackingState
 
         # both joints are not tracked
         if (joint0State == PyKinectV2.TrackingState_NotTracked) or (joint1State == PyKinectV2.TrackingState_NotTracked): 
@@ -90,6 +90,8 @@ class kinect_rgbd(object):
                                 continue 
                             
                             joints = body.joints 
+                            for joint in joints:
+                                print(joint.Position.x)
                             # convert joint coordinates to color space 
                             joint_points = self._kinect.body_joints_to_color_space(joints)
                             self.draw_body(joints, joint_points)
