@@ -27,7 +27,6 @@ class kinect_rgbd(object):
 
         start = (int(jointPoints[joint0].x), int(jointPoints[joint0].y))
         end = (int(jointPoints[joint1].x), int(jointPoints[joint1].y))
-        print(3)
 
         cv2.line(self.frame,start,end,(0, 0, 255),8)
 
@@ -94,7 +93,6 @@ class kinect_rgbd(object):
                             # convert joint coordinates to color space 
                             joint_points = self._kinect.body_joints_to_color_space(joints)
                             self.draw_body(joints, joint_points)
-                            print(1)
 
                 cv2.imshow('rgbd',self.frame)
 
