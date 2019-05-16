@@ -88,10 +88,19 @@ class kinect_rgbd(object):
                             body = self._bodies.bodies[i]
                             if not body.is_tracked: 
                                 continue 
-                            
+                            temp_skeleton = np.array([])
                             joints = body.joints 
-                            for joint in joints:
-                                print(joint.Position.x)
+                            # can't use 'for joint in joints', because in joints there are something don't belong to joint, which you can find in PyKinectV2.py
+                            for i in range(0,25):
+                            # print(type(joint.Position))
+                            # print(joint.Position.x)
+                            # print(joint.Position.y)
+                            # print(joint.Position.z)
+                                temp = np.array([joints[i].Position.x,joints[i].Position.y,joints[i].Position.z])
+                                temp_skeleton = np.append(temp_skeleton,temp)
+                            print(temp_skeleton.shape)
+                            # print(temp)
+                            # print('------------------------')
                             # convert joint coordinates to color space 
                             joint_points = self._kinect.body_joints_to_color_space(joints)
                             self.draw_body(joints, joint_points)
