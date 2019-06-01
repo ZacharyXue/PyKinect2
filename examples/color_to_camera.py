@@ -19,20 +19,13 @@ width, height = kinect.color_frame_desc.width, kinect.color_frame_desc.height
 cameraPoint_capacity = ctypes.c_uint(width * height)
 cameraPoint_data_type = PyKinectV2._CameraSpacePoint * cameraPoint_capacity.value
 
-while cv2.waitKey(10) != 27:
-
-    # --- Getting frames and drawing   
-    if kinect.has_new_color_frame():
-        frame = kinect.get_last_color_frame()
-        frame = np.reshape(frame,[1080,1920,4])
-        frame = cv2.cvtColor(frame, cv2.COLOR_RGBA2RGB)
+while 1:    
+    if kinect.has_new_depth_frame():   
+        cameraPointCount = ctypes.POINTER(PyKinectV2._CameraSpacePoint)
         
-        if kinect.has_new_depth_frame():   
-            cameraPointCount = ctypes.POINTER(PyKinectV2._CameraSpacePoint)
-            
-            cameraPointCount = ctypes.cast(cameraPoint_data_type(), ctypes.POINTER(PyKinectV2._CameraSpacePoint))   
-            hr = kinect._mapper.MapColorFrameToCameraSpace(kinect._depth_frame_data_capacity,kinect._depth_frame_data,\
-                cameraPoint_capacity,cameraPointCount)
-            print(float(cameraPointCount[int(0.5*height*width + 0.5*width)].x))
-            # I guess the result is inf becuase the Kinect could not detect in that distance
+        cameraPointCount = ctypes.cast(cameraPoint_data_type(), ctypes.POINTER(PyKinectV2._CameraSpacePoint))   
+        hr = kinect._mapper.MapColorFrameToCameraSpace(kinect._depth_frame_data_capacity,kinect._depth_frame_data,\
+            cameraPoint_capacity,cameraPointCount)
+        print(float(cameraPointCount[int(0.5*height*width + 0.5*width)].x))
+        # I guess the result is inf becuase the Kinect could not detect in that distance
 kinect.close()
